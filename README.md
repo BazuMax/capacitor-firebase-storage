@@ -4,9 +4,46 @@ Firebase Storage support for Android & iOS
 
 ## Install
 
+Npm
 ```bash
 npm install @bazumax/capacitor-firebase-storage
 npx cap sync
+```
+
+Yarn
+```bash
+yarn add @bazumax/capacitor-firebase-storage
+npx cap sync
+```
+
+## Example
+Call `uploadFile` to open image picker and upload image to Storage
+
+```typescript
+import {FirebaseStorage} from "@bazumax/capacitor-firebase-storage"
+
+const event = await FirebaseStorage.addListener('onUploadStateChanged', async ({state}) => {
+    const messages = {
+      "compressing": "Compressing...",
+      "uploading": "Uploading to Firebase...",
+    }
+    console.log("[FirebaseStorage] state: " + messages[state])
+})
+
+try {
+  const { url } = await FirebaseStorage.uploadFile({
+    withImagePicker: true,
+    title: "Select avatar",
+    storagePath: `/users/avatars/${state.uid}`,
+    compress: true
+  })
+  
+  // Do anymore with public url
+  // ....
+} finally {
+  // Unsubscribe event when all work done!
+  event.remove()
+}
 ```
 
 ## API
