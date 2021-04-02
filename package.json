@@ -1,6 +1,6 @@
 {
   "name": "@bazumax/capacitor-firebase-storage",
-  "version": "0.0.1",
+  "version": "3.1.0",
   "description": "Firebase Storage support for Android & iOS",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -74,5 +74,8 @@
     "android": {
       "src": "android"
     }
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
